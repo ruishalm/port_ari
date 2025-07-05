@@ -1,0 +1,413 @@
+/* --- FONTES E ESTILOS GLOBAIS --- */
+
+/* Importando a fonte Roboto do Google Fonts, que é usada no site original */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* 
+  Variáveis de Cor: Facilita a mudança de cores no site todo.
+  Peguei essas cores do CSS original que você mandou.
+*/
+:root {
+    --cor-azul-escuro: #3D5A80;   /* Azul acinzentado para seções principais */
+    --cor-azul-claro: #98C1D9;    /* Azul claro para detalhes ou hover */
+    --cor-bege-fundo: #F4F1DE;    /* Bege bem claro para o fundo geral */
+    --cor-bege-secao: #E0DDCF;    /* Bege um pouco mais escuro para seções alternadas */
+    --cor-destaque: #EE6C4D;      /* Laranja queimado para botões e destaques */
+    --cor-texto-escuro: #293241;  /* Quase preto, com um tom de azul */
+    --cor-texto-claro: #F4F1DE;   /* A mesma cor do fundo bege, para contraste */
+}
+
+/* Reset básico e estilos para o corpo da página */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif; /* Usando a fonte que importamos */
+    background-color: var(--cor-bege-fundo);
+    color: var(--cor-texto-escuro);
+    line-height: 1.6; /* Melhora a legibilidade */
+}
+
+h1, h2, h3 {
+    font-weight: 700; /* Deixa os títulos mais fortes */
+}
+
+/* --- LAYOUT GERAL DAS SEÇÕES (CONTAINER) --- */
+/* Isso centraliza o conteúdo de todas as seções dentro do <main> e do <footer> */
+main > section, .footer-section {
+    max-width: 1100px; /* A largura máxima que o conteúdo pode ter */
+    margin-left: auto;  /* Truque para centralizar horizontalmente */
+    margin-right: auto; /* Truque para centralizar horizontalmente */
+    padding: 60px 20px; /* Espaçamento interno para o conteúdo não colar nas bordas */
+    overflow: hidden; /* Boa prática para evitar que elementos "escapem" da seção */
+}
+
+
+/* --- SEÇÃO 1: HERÓI (PRINCIPAL) --- */
+
+.hero-section {
+    background-color: var(--cor-azul-escuro);
+    /* Para adicionar uma imagem de fundo depois:
+       background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('sua-imagem.jpg');
+       background-size: cover;
+    */
+    color: var(--cor-texto-claro);
+    text-align: center;
+    padding: 60px 20px; /* Espaçamento interno (em cima/embaixo e dos lados) */
+
+    /* Usando Flexbox para alinhar tudo no centro verticalmente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Remove a centralização geral da seção de herói para que ela ocupe a tela toda */
+.hero-section {
+    max-width: none;
+}
+
+.hero-section h1 {
+    font-size: 2.5rem; /* Tamanho da fonte do título principal */
+    margin-bottom: 10px;
+}
+
+.hero-section h2 {
+    font-size: 1.5rem;
+    font-weight: 400; /* Fonte mais leve para o subtítulo */
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    max-width: 600px; /* Limita a largura do parágrafo para não ficar muito extenso */
+    margin-bottom: 20px;
+}
+
+
+/* --- VÍDEO RESPONSIVO --- */
+
+.video-container {
+    width: 100%;
+    max-width: 640px; /* Largura máxima do vídeo */
+    margin: 20px 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+    border-radius: 8px;
+    overflow: hidden; /* Garante que o iframe não passe da borda arredondada */
+}
+
+.video-container iframe {
+    /* Truque para o vídeo ser responsivo e manter a proporção */
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Proporção de vídeo widescreen */
+    display: block; /* Remove espaço extra embaixo do iframe */
+}
+
+.video-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: white;
+    border: 1px solid #ddd;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+
+/* --- BOTÃO DE CHAMADA PARA AÇÃO (CTA) --- */
+
+.cta-button {
+    background-color: var(--cor-destaque);
+    color: white;
+    text-decoration: none; /* Remove o sublinhado do link */
+    padding: 15px 30px; /* Espaçamento interno do botão */
+    border-radius: 50px; /* Deixa o botão com cantos bem arredondados */
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase; /* Deixa o texto em maiúsculas */
+    transition: all 0.3s ease; /* Efeito suave para o hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block; /* Permite aplicar padding e margin */
+}
+
+.cta-button:hover {
+    transform: translateY(-3px); /* Move o botão um pouco para cima */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Aumenta a sombra */
+    filter: brightness(1.1); /* Deixa o botão um pouco mais brilhante */
+}
+
+/* --- SEÇÃO 2: CONSULTÓRIO (Layout de 2 colunas) --- */
+
+.office-section {
+    display: flex; /* Ativa o Flexbox para criar as colunas */
+    align-items: center; /* Alinha o texto e a imagem verticalmente */
+    gap: 40px; /* Espaço entre as colunas */
+}
+
+.office-section .text-content,
+.office-section .image-carousel {
+    flex: 1; /* Faz com que cada coluna ocupe 50% do espaço */
+}
+
+.image-carousel {
+    position: relative;
+    overflow: hidden; /* ESSENCIAL: Esconde as imagens que estão fora da área visível */
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Sombra no container */
+}
+
+.carousel-images {
+    display: flex; /* Coloca as imagens lado a lado, formando a "fita" */
+    transition: transform 0.5s ease-in-out; /* A ANIMAÇÃO! */
+}
+
+.carousel-images img {
+    width: 100%;
+    height: 500px; /* Altura fixa para o container não pular */
+    object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+    flex-shrink: 0; /* Impede que as imagens encolham ou se espremam */
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(41, 50, 65, 0.7); /* Fundo semi-transparente */
+    color: var(--cor-texto-claro);
+    border: none;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.carousel-button:hover {
+    background-color: var(--cor-azul-escuro);
+}
+
+.carousel-button.prev { left: 10px; }
+.carousel-button.next { right: 10px; }
+
+/* --- SEÇÃO 4: SOBRE MIM (Layout de 2 colunas) --- */
+
+.about-section {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    border-radius: 8px;
+}
+
+.about-section .about-text,
+.about-section .about-image {
+    flex: 1;
+}
+
+.about-section .about-image img {
+    width: 100%;
+    max-width: 400px; /* Limita o tamanho da foto */
+    display: block; /* Remove espaços extras */
+    margin: 0 auto; /* Centraliza a imagem na coluna */
+    border-radius: 50%; /* Deixa a imagem de perfil redonda */
+    height: 400px; /* Força a altura para formar o círculo */
+
+    /* --- ESTILO PARA O PLACEHOLDER --- */
+    background-color: white; /* Fundo branco */
+    border: 1px solid #ddd; /* Borda cinza clara */
+    color: #888; /* Cor do texto "Imagem Aqui" */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+}
+
+.about-section blockquote {
+    font-style: italic;
+    color: var(--cor-texto-escuro);
+    border-left: 4px solid var(--cor-destaque);
+    padding-left: 20px;
+    margin-top: 20px;
+}
+
+/* --- SEÇÃO 3: SERVIÇOS (Cards) --- */
+.services-section {
+    background-color: var(--cor-bege-secao);
+    text-align: center;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Cria 4 colunas de tamanho igual */
+    gap: 30px; /* Espaço entre os cards */
+    margin-top: 40px;
+}
+
+.service-card {
+    background-color: #ffffff;
+    padding: 40px 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação suave */
+}
+
+.service-card:hover {
+    transform: translateY(-10px); /* Efeito de "levantar" o card */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12); /* Sombra mais forte */
+}
+
+.service-card h3 {
+    margin-top: 15px;
+    color: var(--cor-azul-escuro);
+}
+
+/* --- SEÇÃO 5: DÚVIDAS FREQUENTES (FAQ) --- */
+.faq-content-wrapper {
+    background-color: var(--cor-bege-secao);
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
+    margin-top: 40px;
+}
+
+.faq-container,
+.faq-contact {
+    flex: 1;
+}
+
+    .accordion-item {
+        background-color: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    .accordion-item:hover {
+        border-color: #d0d0d0;
+    }
+
+    .accordion-item.is-open {
+        background-color: #f9f9f9;
+    }
+
+    .accordion-header {
+        padding: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .accordion-header::after {
+        content: '+';
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.8rem;
+        font-weight: 300;
+        color: var(--cor-destaque);
+        transition: transform 0.3s ease-out;
+    }
+
+    .accordion-item.is-open .accordion-header::after {
+        transform: translateY(-50%) rotate(45deg);
+    }
+
+    .faq-content {
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.4s ease-out; /* A animação de abrir e fechar */
+    }
+
+    .accordion-item.is-open .faq-content {
+        max-height: 500px; /* Valor alto para caber o conteúdo */
+    }
+
+    .faq-content p {
+        padding: 0 15px 15px 15px;
+        margin: 0;
+        border-top: 1px solid #e9e9e9;
+    }
+
+.faq-contact {
+    text-align: left; /* Alinha o conteúdo (e o botão) à esquerda */
+}
+
+.whatsapp-button {
+    display: inline-flex; /* Permite alinhar o ícone e o texto */
+    align-items: center;
+    background-color: #25D366; /* Cor oficial do WhatsApp */
+    gap: 10px; /* Espaço entre o ícone e o texto */
+}
+
+.whatsapp-button svg {
+    width: 20px; /* Tamanho do ícone */
+    height: 20px;
+}
+
+/* --- SEÇÃO 6: RODAPÉ --- */
+.footer-logo img {
+    width: 250px;
+    height: 80px;
+    background-color: white;
+    border: 1px solid #ddd;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+}
+
+.footer-info {
+    color: var(--cor-texto-claro);
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+.footer-info a {
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.footer-section {
+    background-color: var(--cor-azul-escuro);
+}
+
+/* --- RESPONSIVIDADE --- */
+
+/* Para telas de até 1024px (tablets) */
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas em vez de 4 */
+    }
+}
+
+/* Para telas de até 768px (celulares) */
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.2rem; }
+
+    /* Faz as seções de 2 colunas virarem 1 coluna */
+    .office-section,
+    .about-section,
+    .faq-content-wrapper {
+        flex-direction: column;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr; /* 1 coluna para os serviços */
+    }
+
+    .footer-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-info {
+        text-align: center;
+        margin-top: 20px;
+    }
+}
