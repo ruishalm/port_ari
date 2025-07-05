@@ -1,103 +1,148 @@
 /* --- FONTES E ESTILOS GLOBAIS --- */
 
-/* Importando a fonte Roboto do Google Fonts, que é usada no site original */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-/* 
-  Variáveis de Cor: Facilita a mudança de cores no site todo.
-  Peguei essas cores do CSS original que você mandou.
-*/
 :root {
-    --cor-azul-escuro: #3D5A80;   /* Azul acinzentado para seções principais */
-    --cor-azul-claro: #98C1D9;    /* Azul claro para detalhes ou hover */
-    --cor-bege-fundo: #F4F1DE;    /* Bege bem claro para o fundo geral */
-    --cor-bege-secao: #E0DDCF;    /* Bege um pouco mais escuro para seções alternadas */
-    --cor-destaque: #EE6C4D;      /* Laranja queimado para botões e destaques */
-    --cor-texto-escuro: #293241;  /* Quase preto, com um tom de azul */
-    --cor-texto-claro: #F4F1DE;   /* A mesma cor do fundo bege, para contraste */
+    --cor-azul-escuro: #3D5A80;
+    --cor-azul-claro: #98C1D9;
+    --cor-bege-fundo: #F4F1DE;
+    --cor-bege-secao: #E0DDCF;
+    --cor-destaque: #EE6C4D;
+    --cor-texto-escuro: #293241;
+    --cor-texto-claro: #F4F1DE;
 }
 
-/* Reset básico e estilos para o corpo da página */
 body {
     margin: 0;
-    font-family: 'Roboto', sans-serif; /* Usando a fonte que importamos */
+    font-family: 'Roboto', sans-serif;
     background-color: var(--cor-bege-fundo);
     color: var(--cor-texto-escuro);
-    line-height: 1.6; /* Melhora a legibilidade */
+    line-height: 1.6;
+    padding-top: 80px;
 }
 
 h1, h2, h3 {
-    font-weight: 700; /* Deixa os títulos mais fortes */
+    font-weight: 700;
 }
 
-/* --- LAYOUT GERAL DAS SEÇÕES (CONTAINER) --- */
-/* Isso centraliza o conteúdo de todas as seções dentro do <main> e do <footer> */
 main > section, .footer-section {
-    max-width: 1100px; /* A largura máxima que o conteúdo pode ter */
-    margin-left: auto;  /* Truque para centralizar horizontalmente */
-    margin-right: auto; /* Truque para centralizar horizontalmente */
-    padding: 60px 20px; /* Espaçamento interno para o conteúdo não colar nas bordas */
-    overflow: hidden; /* Boa prática para evitar que elementos "escapem" da seção */
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 60px 20px;
+    overflow: hidden;
 }
 
+/* --- STICKY HEADER --- */
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: rgba(249, 247, 240, 0.95); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
 
-/* --- SEÇÃO 1: HERÓI (PRINCIPAL) --- */
+.header-content {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-logo {
+    justify-self: start;
+}
+
+.header-logo a {
+    height: 40px;
+    display: block;
+    width: 150px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+}
+
+.header-title {
+    justify-self: center;
+    font-weight: 500;
+    color: var(--cor-texto-escuro);
+    font-size: 1.1rem;
+    white-space: nowrap;
+}
+
+.header-cta {
+    justify-self: end;
+}
+
+.cta-button.small {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+.cta-button.small svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* --- SEÇÃO 1: HERÓI  --- */
 
 .hero-section {
     background-color: var(--cor-azul-escuro);
-    /* Para adicionar uma imagem de fundo depois:
-       background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('sua-imagem.jpg');
-       background-size: cover;
-    */
     color: var(--cor-texto-claro);
     text-align: center;
-    padding: 60px 20px; /* Espaçamento interno (em cima/embaixo e dos lados) */
-
-    /* Usando Flexbox para alinhar tudo no centro verticalmente */
+    padding: 60px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-/* Remove a centralização geral da seção de herói para que ela ocupe a tela toda */
 .hero-section {
     max-width: none;
 }
 
 .hero-section h1 {
-    font-size: 2.5rem; /* Tamanho da fonte do título principal */
+    font-size: 2.5rem;
     margin-bottom: 10px;
 }
 
 .hero-section h2 {
     font-size: 1.5rem;
-    font-weight: 400; /* Fonte mais leve para o subtítulo */
+    font-weight: 400;
     margin-bottom: 20px;
 }
 
 .hero-section p {
-    max-width: 600px; /* Limita a largura do parágrafo para não ficar muito extenso */
+    max-width: 600px;
     margin-bottom: 20px;
 }
 
-
-/* --- VÍDEO RESPONSIVO --- */
+/* --- VÍDEO --- */
 
 .video-container {
     width: 100%;
-    max-width: 640px; /* Largura máxima do vídeo */
+    max-width: 640px;
     margin: 20px 0;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    overflow: hidden; /* Garante que o iframe não passe da borda arredondada */
+    overflow: hidden;
 }
 
 .video-container iframe {
-    /* Truque para o vídeo ser responsivo e manter a proporção */
     width: 100%;
-    aspect-ratio: 16 / 9; /* Proporção de vídeo widescreen */
-    display: block; /* Remove espaço extra embaixo do iframe */
+    aspect-ratio: 16 / 9;
+    display: block;
 }
 
 .video-placeholder {
@@ -113,66 +158,65 @@ main > section, .footer-section {
     font-size: 1.2rem;
 }
 
-
-/* --- BOTÃO DE CHAMADA PARA AÇÃO (CTA) --- */
+/* --- BOTÃO DE CHAMADA  --- */
 
 .cta-button {
     background-color: var(--cor-destaque);
     color: white;
-    text-decoration: none; /* Remove o sublinhado do link */
-    padding: 15px 30px; /* Espaçamento interno do botão */
-    border-radius: 50px; /* Deixa o botão com cantos bem arredondados */
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 50px;
     font-weight: 700;
     font-size: 1.1rem;
-    text-transform: uppercase; /* Deixa o texto em maiúsculas */
-    transition: all 0.3s ease; /* Efeito suave para o hover */
+    text-transform: uppercase;
+    transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: inline-block; /* Permite aplicar padding e margin */
+    display: inline-block;
 }
 
 .cta-button:hover {
-    transform: translateY(-3px); /* Move o botão um pouco para cima */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Aumenta a sombra */
-    filter: brightness(1.1); /* Deixa o botão um pouco mais brilhante */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.1);
 }
 
-/* --- SEÇÃO 2: CONSULTÓRIO (Layout de 2 colunas) --- */
+/* --- SEÇÃO 2: CONSULTÓRIO  --- */
 
 .office-section {
-    display: flex; /* Ativa o Flexbox para criar as colunas */
-    align-items: center; /* Alinha o texto e a imagem verticalmente */
-    gap: 40px; /* Espaço entre as colunas */
+    display: flex;
+    align-items: center;
+    gap: 40px;
 }
 
 .office-section .text-content,
 .office-section .image-carousel {
-    flex: 1; /* Faz com que cada coluna ocupe 50% do espaço */
+    flex: 1;
 }
 
 .image-carousel {
     position: relative;
-    overflow: hidden; /* ESSENCIAL: Esconde as imagens que estão fora da área visível */
+    overflow: hidden;
     border-radius: 8px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Sombra no container */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
 .carousel-images {
-    display: flex; /* Coloca as imagens lado a lado, formando a "fita" */
-    transition: transform 0.5s ease-in-out; /* A ANIMAÇÃO! */
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
 
 .carousel-images img {
     width: 100%;
-    height: 500px; /* Altura fixa para o container não pular */
-    object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
-    flex-shrink: 0; /* Impede que as imagens encolham ou se espremam */
+    height: 500px;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
 .carousel-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(41, 50, 65, 0.7); /* Fundo semi-transparente */
+    background-color: rgba(41, 50, 65, 0.7);
     color: var(--cor-texto-claro);
     border: none;
     font-size: 2rem;
@@ -190,7 +234,7 @@ main > section, .footer-section {
 .carousel-button.prev { left: 10px; }
 .carousel-button.next { right: 10px; }
 
-/* --- SEÇÃO 4: SOBRE MIM (Layout de 2 colunas) --- */
+/* --- SEÇÃO 4: SOBRE MIM  --- */
 
 .about-section {
     display: flex;
@@ -206,16 +250,14 @@ main > section, .footer-section {
 
 .about-section .about-image img {
     width: 100%;
-    max-width: 400px; /* Limita o tamanho da foto */
-    display: block; /* Remove espaços extras */
-    margin: 0 auto; /* Centraliza a imagem na coluna */
-    border-radius: 50%; /* Deixa a imagem de perfil redonda */
-    height: 400px; /* Força a altura para formar o círculo */
-
-    /* --- ESTILO PARA O PLACEHOLDER --- */
-    background-color: white; /* Fundo branco */
-    border: 1px solid #ddd; /* Borda cinza clara */
-    color: #888; /* Cor do texto "Imagem Aqui" */
+    max-width: 400px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    height: 400px;
+    background-color: white;
+    border: 1px solid #ddd;
+    color: #888;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -230,7 +272,7 @@ main > section, .footer-section {
     margin-top: 20px;
 }
 
-/* --- SEÇÃO 3: SERVIÇOS (Cards) --- */
+/* --- SEÇÃO 3: SERVIÇOS --- */
 .services-section {
     background-color: var(--cor-bege-secao);
     text-align: center;
@@ -238,8 +280,8 @@ main > section, .footer-section {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Cria 4 colunas de tamanho igual */
-    gap: 30px; /* Espaço entre os cards */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
     margin-top: 40px;
 }
 
@@ -249,12 +291,12 @@ main > section, .footer-section {
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-card:hover {
-    transform: translateY(-10px); /* Efeito de "levantar" o card */
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12); /* Sombra mais forte */
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
 }
 
 .service-card h3 {
@@ -262,7 +304,7 @@ main > section, .footer-section {
     color: var(--cor-azul-escuro);
 }
 
-/* --- SEÇÃO 5: DÚVIDAS FREQUENTES (FAQ) --- */
+/* --- SEÇÃO 5:(FAQ) --- */
 .faq-content-wrapper {
     background-color: var(--cor-bege-secao);
     display: flex;
@@ -318,11 +360,11 @@ main > section, .footer-section {
     .faq-content {
         overflow: hidden;
         max-height: 0;
-        transition: max-height 0.4s ease-out; /* A animação de abrir e fechar */
+        transition: max-height 0.4s ease-out;
     }
 
     .accordion-item.is-open .faq-content {
-        max-height: 500px; /* Valor alto para caber o conteúdo */
+        max-height: 500px;
     }
 
     .faq-content p {
@@ -332,32 +374,40 @@ main > section, .footer-section {
     }
 
 .faq-contact {
-    text-align: left; /* Alinha o conteúdo (e o botão) à esquerda */
+    text-align: left;
 }
 
 .whatsapp-button {
-    display: inline-flex; /* Permite alinhar o ícone e o texto */
+    display: inline-flex;
     align-items: center;
-    background-color: #25D366; /* Cor oficial do WhatsApp */
-    gap: 10px; /* Espaço entre o ícone e o texto */
+    background-color: #25D366;
+    gap: 10px;
 }
 
 .whatsapp-button svg {
-    width: 20px; /* Tamanho do ícone */
+    width: 20px;
     height: 20px;
 }
 
-/* --- SEÇÃO 6: RODAPÉ --- */
-.footer-logo img {
+/* --- SEÇÃO 6: RODAPE --- */
+.footer-section {
+    background-color: var(--cor-azul-escuro);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo {
     width: 250px;
     height: 80px;
-    background-color: white;
-    border: 1px solid #ddd;
-    color: #888;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-style: italic;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+}
+
+.footer-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .footer-info {
@@ -372,34 +422,25 @@ main > section, .footer-section {
     font-weight: 700;
 }
 
-.footer-section {
-    background-color: var(--cor-azul-escuro);
-}
-
 /* --- RESPONSIVIDADE --- */
 
-/* Para telas de até 1024px (tablets) */
 @media (max-width: 1024px) {
     .services-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 colunas em vez de 4 */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Para telas de até 768px (celulares) */
 @media (max-width: 768px) {
     h1 { font-size: 2rem; }
     h2 { font-size: 1.2rem; }
 
-    /* Faz as seções de 2 colunas virarem 1 coluna */
     .office-section,
     .about-section,
     .faq-content-wrapper {
         flex-direction: column;
     }
 
-    .services-grid {
-        grid-template-columns: 1fr; /* 1 coluna para os serviços */
-    }
+    .services-grid { grid-template-columns: 1fr; }
 
     .footer-section {
         flex-direction: column;
@@ -409,5 +450,22 @@ main > section, .footer-section {
     .footer-info {
         text-align: center;
         margin-top: 20px;
+    }
+
+    .header-content {
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+    }
+
+    .header-title {
+        display: none;
+    }
+
+    .cta-button.small span {
+        display: none;
+    }
+
+    .cta-button.small {
+        padding: 10px;
     }
 }
