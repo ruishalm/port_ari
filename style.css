@@ -254,7 +254,8 @@ main > section, .footer-section {
     display: block;
     margin: 0 auto;
     border-radius: 50%;
-    height: 400px;
+    aspect-ratio: 1 / 1; /* Garante que seja sempre um quadrado (que vira círculo) */
+    object-fit: cover;   /* Garante que a imagem preencha o espaço sem distorcer */
     background-color: white;
     border: 1px solid #ddd;
     color: #888;
@@ -488,12 +489,16 @@ main > section, .footer-section {
     background: none;
     border: 1px solid var(--cor-texto-claro);
     color: var(--cor-texto-claro);
-    padding: 5px 10px;
-    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 1.2rem;
     margin: 0 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .theme-button:hover,

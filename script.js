@@ -1,73 +1,51 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const prevButton = document.querySelector('.carousel-button.prev');
-    const nextButton = document.querySelector('.carousel-button.next');
+// --- Lógica do Carrossel ---
+let carouselCurrentIndex = 0;
+function moveCarousel(direction) {
     const imagesContainer = document.querySelector('.carousel-images');
-    const images = document.querySelectorAll('.carousel-images img');
-    let currentImageIndex = 0;
-    const totalImages = images.length;
-
-    function slideCarousel(index) {
-        const offset = -index * 100; 
-        imagesContainer.style.transform = `translateX(${offset}%)`;
-    }
-
-    nextButton.addEventListener('click', function() {
-        
-        currentImageIndex = (currentImageIndex + 1) % totalImages;
-        slideCarousel(currentImageIndex);
-    });
-
-    prevButton.addEventListener('click', function() {
-        
-        currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
-        slideCarousel(currentImageIndex);
-    });
-
+    const totalImages = document.querySelectorAll('.carousel-images img').length;
     
-    slideCarousel(currentImageIndex);
-});
+    if (!imagesContainer || totalImages === 0) return;
+
+    // O cálculo com % (módulo) garante que o índice sempre fique dentro dos limites (0, 1, 2, etc)
+    carouselCurrentIndex = (carouselCurrentIndex + direction + totalImages) % totalImages;
+
+    const offset = -carouselCurrentIndex * 100;
+    imagesContainer.style.transform = `translateX(${offset}%)`;
+}
 
 // --- Acordeão (FAQ) ---
-document.querySelectorAll('.accordion-header').forEach(header => {
-    header.addEventListener('click', () => {
-        const accordionItem = header.parentElement;
-        const isOpen = accordionItem.classList.contains('is-open');
-        accordionItem.classList.toggle('is-open');
-        header.setAttribute('aria-expanded', !isOpen);
-    });
+function toggleFaq(headerElement) {
+    const accordionItem = headerElement.parentElement;
+    const isOpen = accordionItem.classList.contains('is-open');
 
-    
-    header.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-            header.click();
+    // Opcional: Descomente o bloco abaixo se quiser que apenas um item do FAQ fique aberto por vez.
+    /*
+    document.querySelectorAll('.accordion-item.is-open').forEach(openItem => {
+        if (openItem !== accordionItem) {
+            openItem.classList.remove('is-open');
+            openItem.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
         }
     });
-});
+    */
+
+    accordionItem.classList.toggle('is-open');
+    headerElement.setAttribute('aria-expanded', !isOpen);
+}
 
 // --- Theme Switcher ---
-document.addEventListener('DOMContentLoaded', () => {
-    const themeButtons = document.querySelectorAll('.theme-button');
-    const body = document.body;
-
-    function setTheme(themeName) {
-        localStorage.setItem('theme', themeName);
-        body.className = themeName === 'dark' ? 'dark-theme' : '';
-
-        themeButtons.forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.theme === themeName);
-        });
-    }
-
-    themeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const themeName = button.dataset.theme;
-            setTheme(themeName);
-        });
+function switchTheme(theme) {
+    // Adiciona ou remove a classe do body
+    document.body.className = theme === 'dark' ? 'dark-theme' : '';
+    // Salva a preferência no navegador
+    localStorage.setItem('theme', theme);
+    // Atualiza qual botão parece "ativo"
+    document.querySelectorAll('.theme-button').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.theme === theme);
     });
+}
 
-    // Aplica o tema salvo no carregamento inicial
-    (function () {
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        setTheme(savedTheme);
-    })();
+// Aplica o tema salvo quando a página carrega
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    switchTheme(savedTheme);
 });
