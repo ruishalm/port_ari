@@ -422,6 +422,63 @@ main > section, .footer-section {
     font-weight: 700;
 }
 
+/* --- THEME SWITCHER --- */
+.theme-switcher {
+    margin-top: 20px;
+}
+
+.theme-button {
+    background: none;
+    border: 1px solid var(--cor-texto-claro);
+    color: var(--cor-texto-claro);
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    margin: 0 5px;
+}
+
+.theme-button:hover,
+.theme-button.active {
+    background-color: var(--cor-texto-claro);
+    color: var(--cor-azul-escuro);
+}
+
+/* --- DARK THEME --- */
+body.dark-theme {
+    --cor-bege-fundo: #293241;
+    --cor-bege-secao: #3D5A80;
+    --cor-texto-escuro: #F4F1DE;
+    --cor-texto-claro: #293241;
+}
+
+/* Overrides específicos para componentes no tema escuro */
+body.dark-theme .sticky-header {
+    background-color: rgba(41, 50, 65, 0.95);
+}
+
+body.dark-theme .service-card,
+body.dark-theme .accordion-item {
+    background-color: #3D5A80;
+    border-color: #556b8b;
+}
+
+body.dark-theme .accordion-item.is-open {
+    background-color: #4a6180;
+}
+
+body.dark-theme .about-section .about-image img,
+body.dark-theme .video-placeholder {
+    background-color: #3D5A80;
+    border-color: #556b8b;
+}
+
+body.dark-theme .theme-button.active {
+    background-color: var(--cor-texto-escuro);
+    color: var(--cor-bege-fundo);
+}
+
 /* --- RESPONSIVIDADE --- */
 
 @media (max-width: 1024px) {

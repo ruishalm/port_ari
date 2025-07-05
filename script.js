@@ -43,3 +43,31 @@ document.querySelectorAll('.accordion-header').forEach(header => {
         }
     });
 });
+
+// --- Theme Switcher ---
+document.addEventListener('DOMContentLoaded', () => {
+    const themeButtons = document.querySelectorAll('.theme-button');
+    const body = document.body;
+
+    function setTheme(themeName) {
+        localStorage.setItem('theme', themeName);
+        body.className = themeName === 'dark' ? 'dark-theme' : '';
+
+        themeButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.theme === themeName);
+        });
+    }
+
+    themeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const themeName = button.dataset.theme;
+            setTheme(themeName);
+        });
+    });
+
+    // Aplica o tema salvo no carregamento inicial
+    (function () {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+    })();
+});
